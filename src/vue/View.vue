@@ -1,20 +1,16 @@
 <template>
-  <div class="w-full h-full overflow-y-auto bg-white dark:bg-gray-900">
+  <div class="w-full h-full overflow-y-auto bg-white">
     <div class="max-w-2xl mx-auto p-6">
       <div class="mb-6">
-        <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-          Todo List
-        </h2>
-        <div class="text-sm text-gray-600 dark:text-gray-400">
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Todo List</h2>
+        <div class="text-sm text-gray-600">
           <span>{{ completedCount }} of {{ totalCount }} completed</span>
         </div>
       </div>
 
       <div v-if="items.length === 0" class="text-center py-12">
-        <div class="text-gray-400 dark:text-gray-600 text-lg">
-          No todo items yet
-        </div>
-        <div class="text-gray-500 dark:text-gray-500 text-sm mt-2">
+        <div class="text-gray-400 text-lg">No todo items yet</div>
+        <div class="text-gray-500 text-sm mt-2">
           Ask the assistant to add some tasks!
         </div>
       </div>
@@ -23,32 +19,30 @@
         <div
           v-for="item in items"
           :key="item.id"
-          class="group flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          class="group flex items-start gap-3 p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
         >
           <input
             type="checkbox"
             :checked="item.completed"
             @change="toggleItem(item.id)"
-            class="mt-1 h-5 w-5 rounded border-gray-300 dark:border-gray-600 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+            class="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
           />
           <div class="flex-1 min-w-0">
             <p
               :class="[
                 'break-words',
-                item.completed
-                  ? 'line-through text-gray-500 dark:text-gray-500'
-                  : 'text-gray-800 dark:text-gray-100',
+                item.completed ? 'line-through text-gray-500' : 'text-gray-800',
               ]"
             >
               {{ item.text }}
             </p>
-            <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
+            <p class="text-xs text-gray-500 mt-1">
               {{ formatDate(item.createdAt) }}
             </p>
           </div>
           <button
             @click="deleteItem(item.id)"
-            class="opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-opacity p-1"
+            class="opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-700 transition-opacity p-1"
             title="Delete item"
           >
             <svg
@@ -69,11 +63,11 @@
 
       <div
         v-if="completedCount > 0"
-        class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700"
+        class="mt-6 pt-4 border-t border-gray-200"
       >
         <button
           @click="clearCompleted"
-          class="text-sm text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+          class="text-sm text-gray-600 hover:text-red-600 transition-colors"
         >
           Clear completed items
         </button>
