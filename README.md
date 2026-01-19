@@ -1,5 +1,7 @@
 # @gui-chat-plugin/todo
 
+[![npm version](https://badge.fury.io/js/%40gui-chat-plugin%2Ftodo.svg)](https://www.npmjs.com/package/@gui-chat-plugin/todo)
+
 Todo list plugin for GUI Chat applications. Manage tasks with a persistent todo list that syncs via localStorage.
 
 ## Features
@@ -88,6 +90,14 @@ yarn build
 # Lint
 yarn lint
 ```
+
+## Test Prompts
+
+Try these prompts to test the plugin:
+
+1. "Show me my todo list"
+2. "Add 'Buy groceries' to my todo list"
+3. "I finished shopping, mark the groceries task as done"
 
 ## License
 
