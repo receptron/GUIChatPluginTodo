@@ -1,19 +1,14 @@
 # @gui-chat-plugin/todo
 
-A todo list plugin for [MulmoChat](https://github.com/receptron/MulmoChat) - a multi-modal voice chat application with OpenAI's GPT-4 Realtime API.
+Todo list plugin for GUI Chat applications. Manage tasks with a persistent todo list that syncs via localStorage.
 
-## What this plugin does
+## Features
 
-This plugin provides a persistent todo list that allows users to:
-
-- View their current todo items
-- Add new tasks
+- Add, update, and delete todo items
 - Mark tasks as completed/uncompleted
-- Delete individual items
-- Clear all completed items
-- Update existing item text
-
-Data is persisted in localStorage for persistence across sessions.
+- Clear all completed items at once
+- Persistent storage via localStorage
+- Inline text editing capability
 
 ## Installation
 
@@ -23,7 +18,7 @@ yarn add @gui-chat-plugin/todo
 
 ## Usage
 
-### Vue Implementation (for MulmoChat)
+### Vue Integration
 
 ```typescript
 // In src/tools/index.ts
@@ -38,21 +33,45 @@ const pluginList = [
 import "@gui-chat-plugin/todo/style.css";
 ```
 
-### Core Only (Framework-agnostic)
+### Core-only Usage
 
 ```typescript
-import { pluginCore, TOOL_NAME } from "@gui-chat-plugin/todo";
-// or
-import pluginCore from "@gui-chat-plugin/todo";
+import { executeTodo, TOOL_DEFINITION } from "@gui-chat-plugin/todo";
+
+// Show the todo list
+const result = await executeTodo(context, {
+  action: "show",
+});
+
+// Add a new item
+const result = await executeTodo(context, {
+  action: "add",
+  text: "Buy groceries",
+});
 ```
 
-## Package Exports
+## API
 
-| Export | Description |
-|--------|-------------|
-| `@gui-chat-plugin/todo` | Core (framework-agnostic) |
-| `@gui-chat-plugin/todo/vue` | Vue implementation with UI components |
-| `@gui-chat-plugin/todo/style.css` | Tailwind CSS styles |
+### TodoArgs
+
+```typescript
+interface TodoArgs {
+  action: "show" | "add" | "toggle" | "delete" | "clear_completed" | "update";
+  text?: string;     // For add/update actions
+  itemId?: string;   // For toggle/delete/update actions
+}
+```
+
+### TodoItem
+
+```typescript
+interface TodoItem {
+  id: string;
+  text: string;
+  completed: boolean;
+  createdAt: number;
+}
+```
 
 ## Development
 
@@ -60,14 +79,11 @@ import pluginCore from "@gui-chat-plugin/todo";
 # Install dependencies
 yarn install
 
-# Start dev server (http://localhost:5173/)
+# Run demo
 yarn dev
 
 # Build
 yarn build
-
-# Type check
-yarn typecheck
 
 # Lint
 yarn lint
