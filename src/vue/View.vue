@@ -34,10 +34,10 @@
           <div class="flex-1 min-w-0">
             <p
               :class="[
-                'text-white break-words',
+                'break-words',
                 item.completed
                   ? 'line-through text-gray-500 dark:text-gray-500'
-                  : '',
+                  : 'text-gray-800 dark:text-gray-100',
               ]"
             >
               {{ item.text }}
