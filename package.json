@@ -1,6 +1,6 @@
 {
   "name": "@gui-chat-plugin/todo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Todo list plugin for GUIChat",
   "type": "module",
   "main": "./dist/index.cjs",
