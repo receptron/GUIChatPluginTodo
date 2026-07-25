@@ -34,9 +34,7 @@
     "lint": "eslint src demo"
   },
   "peerDependencies": {
-    "vue": "^3.5.0"
-  },
-  "dependencies": {
+    "vue": "^3.5.0",
     "gui-chat-protocol": "^1.2.0"
   },
   "devDependencies": {
