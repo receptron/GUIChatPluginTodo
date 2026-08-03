@@ -1,6 +1,6 @@
 {
   "name": "@gui-chat-plugin/todo",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Todo list plugin for GUIChat",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -35,7 +35,7 @@
   },
   "peerDependencies": {
     "vue": "^3.5.0",
-    "gui-chat-protocol": "^1.2.0"
+    "gui-chat-protocol": "^2.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -46,7 +46,7 @@
     "eslint": "^10.8.0",
     "eslint-plugin-vue": "^10.10.0",
     "globals": "^17.8.0",
-    "gui-chat-protocol": "^1.2.0",
+    "gui-chat-protocol": "^2.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.3",
     "vite": "^8.1.5",
