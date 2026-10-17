@@ -39,15 +39,14 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { plugin, executeTodo } from "../src/vue";
-import type { ToolResult, ToolSample, ToolPlugin } from "gui-chat-protocol/vue";
-import type { TodoToolData, TodoArgs } from "../src/core/types";
+import type { ToolResult, ToolSample } from "gui-chat-protocol/vue";
+import type { TodoToolData } from "../src/core/types";
+import { isTodoArgs } from "./isTodoArgs";
 
-const currentPlugin = plugin as unknown as ToolPlugin;
-
-const pluginName = computed(() => currentPlugin.toolDefinition.name);
-const samplesList = computed(() => currentPlugin.samples || []);
-const ViewComponent = computed(() => currentPlugin.viewComponent);
-const PreviewComponent = computed(() => currentPlugin.previewComponent);
+const pluginName = computed(() => plugin.toolDefinition.name);
+const samplesList = computed(() => plugin.samples || []);
+const ViewComponent = computed(() => plugin.viewComponent);
+const PreviewComponent = computed(() => plugin.previewComponent);
 
 const result = ref<ToolResult<TodoToolData>>({
   toolName: pluginName.value,
@@ -58,8 +57,12 @@ const result = ref<ToolResult<TodoToolData>>({
 });
 
 const executeSample = async (sample: ToolSample) => {
-  const args = sample.args as unknown as TodoArgs;
-  const execResult = await executeTodo({} as any, args);
+  const { args } = sample;
+  if (!isTodoArgs(args)) {
+    console.error("Sample args are not TodoArgs:", sample.name, args);
+    return;
+  }
+  const execResult = await executeTodo({}, args);
   result.value = {
     ...result.value,
     ...execResult,
