@@ -1,6 +1,7 @@
 # @gui-chat-plugin/todo
 
 [![npm version](https://badge.fury.io/js/%40gui-chat-plugin%2Ftodo.svg)](https://www.npmjs.com/package/@gui-chat-plugin/todo)
+[![scoria](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/receptron/GUIChatPluginTodo/badges/scoria.json)](https://github.com/receptron/GUIChatPluginTodo/actions/workflows/scoria.yml)
 
 Todo list plugin for GUI Chat applications. Manage tasks with a persistent todo list that syncs via localStorage.
 
