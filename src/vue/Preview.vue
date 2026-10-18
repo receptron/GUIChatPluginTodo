@@ -1,12 +1,7 @@
 <template>
   <div class="p-2 bg-gray-50 dark:bg-gray-800 rounded">
     <div class="flex items-center gap-2 mb-2">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-4 w-4 text-blue-600 dark:text-blue-400"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-600 dark:text-blue-400" viewBox="0 0 20 20" fill="currentColor">
         <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
         <path
           fill-rule="evenodd"
@@ -14,9 +9,7 @@
           clip-rule="evenodd"
         />
       </svg>
-      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-        Todo List
-      </span>
+      <span class="text-sm font-medium text-gray-700 dark:text-gray-300"> Todo List </span>
     </div>
 
     <div class="text-xs text-gray-600 dark:text-gray-400">
@@ -24,25 +17,14 @@
       <div v-else>
         <div class="mb-1">{{ completedCount }}/{{ totalCount }} completed</div>
         <div class="space-y-1 max-h-20 overflow-y-auto">
-          <div
-            v-for="item in items.slice(0, 3)"
-            :key="item.id"
-            class="flex items-start gap-1 text-xs"
-          >
+          <div v-for="item in items.slice(0, 3)" :key="item.id" class="flex items-start gap-1 text-xs">
             <span v-if="item.completed" class="text-green-500">✓</span>
             <span v-else class="text-gray-400">○</span>
-            <span
-              :class="[
-                'flex-1 truncate',
-                item.completed ? 'line-through text-gray-500' : 'text-white',
-              ]"
-            >
+            <span :class="['flex-1 truncate', item.completed ? 'line-through text-gray-500' : 'text-white']">
               {{ item.text }}
             </span>
           </div>
-          <div v-if="items.length > 3" class="text-gray-500 italic">
-            +{{ items.length - 3 }} more...
-          </div>
+          <div v-if="items.length > 3" class="text-gray-500 italic">+{{ items.length - 3 }} more...</div>
         </div>
       </div>
     </div>
@@ -60,7 +42,5 @@ const props = defineProps<{
 
 const items = computed(() => props.result.data?.items || []);
 const totalCount = computed(() => items.value.length);
-const completedCount = computed(
-  () => items.value.filter((item) => item.completed).length,
-);
+const completedCount = computed(() => items.value.filter((item) => item.completed).length);
 </script>

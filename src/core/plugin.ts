@@ -30,10 +30,7 @@ function saveTodos(items: TodoItem[]): void {
   }
 }
 
-export const executeTodo = async (
-  _context: ToolContext,
-  args: TodoArgs,
-): Promise<ToolResult<TodoToolData, unknown>> => {
+export const executeTodo = async (_context: ToolContext, args: TodoArgs): Promise<ToolResult<TodoToolData, unknown>> => {
   const { action, text, newText } = args;
 
   try {
@@ -53,8 +50,7 @@ export const executeTodo = async (
               completed: item.completed,
             })),
           },
-          instructions:
-            "The todo list has been displayed. Acknowledge the current state of the list to the user.",
+          instructions: "The todo list has been displayed. Acknowledge the current state of the list to the user.",
           updating: true,
         };
       }
@@ -64,8 +60,7 @@ export const executeTodo = async (
           return {
             message: "Cannot add todo: text is required",
             data: { items },
-            instructions:
-              "Tell the user that a todo item text is required to add an item.",
+            instructions: "Tell the user that a todo item text is required to add an item.",
             updating: true,
           };
         }
@@ -97,15 +92,12 @@ export const executeTodo = async (
           return {
             message: "Cannot delete todo: text is required",
             data: { items },
-            instructions:
-              "Tell the user which todo item they want to delete. List the current items if needed.",
+            instructions: "Tell the user which todo item they want to delete. List the current items if needed.",
             updating: true,
           };
         }
 
-        const indexToDelete = items.findIndex(
-          (item) => item.text.toLowerCase() === text.toLowerCase(),
-        );
+        const indexToDelete = items.findIndex((item) => item.text.toLowerCase() === text.toLowerCase());
 
         if (indexToDelete === -1) {
           return {
@@ -146,8 +138,7 @@ export const executeTodo = async (
             jsonData: {
               totalItems: items.length,
             },
-            instructions:
-              "Tell the user that there are no completed items to clear.",
+            instructions: "Tell the user that there are no completed items to clear.",
             updating: true,
           };
         }
@@ -169,8 +160,7 @@ export const executeTodo = async (
       case "update": {
         if (!text || typeof text !== "string") {
           return {
-            message:
-              "Cannot update todo: text is required to identify the item",
+            message: "Cannot update todo: text is required to identify the item",
             data: { items },
             instructions: "Tell the user which todo item they want to update.",
             updating: true,
@@ -181,15 +171,12 @@ export const executeTodo = async (
           return {
             message: "Cannot update todo: newText is required",
             data: { items },
-            instructions:
-              "Tell the user what the new text should be for the todo item.",
+            instructions: "Tell the user what the new text should be for the todo item.",
             updating: true,
           };
         }
 
-        const itemToUpdate = items.find(
-          (item) => item.text.toLowerCase() === text.toLowerCase(),
-        );
+        const itemToUpdate = items.find((item) => item.text.toLowerCase() === text.toLowerCase());
 
         if (!itemToUpdate) {
           return {
@@ -225,15 +212,12 @@ export const executeTodo = async (
           return {
             message: "Cannot check todo: text is required to identify the item",
             data: { items },
-            instructions:
-              "Tell the user which todo item they want to mark as completed.",
+            instructions: "Tell the user which todo item they want to mark as completed.",
             updating: true,
           };
         }
 
-        const itemToCheck = items.find(
-          (item) => item.text.toLowerCase() === text.toLowerCase(),
-        );
+        const itemToCheck = items.find((item) => item.text.toLowerCase() === text.toLowerCase());
 
         if (!itemToCheck) {
           return {
@@ -275,18 +259,14 @@ export const executeTodo = async (
       case "uncheck": {
         if (!text || typeof text !== "string") {
           return {
-            message:
-              "Cannot uncheck todo: text is required to identify the item",
+            message: "Cannot uncheck todo: text is required to identify the item",
             data: { items },
-            instructions:
-              "Tell the user which todo item they want to mark as not completed.",
+            instructions: "Tell the user which todo item they want to mark as not completed.",
             updating: true,
           };
         }
 
-        const itemToUncheck = items.find(
-          (item) => item.text.toLowerCase() === text.toLowerCase(),
-        );
+        const itemToUncheck = items.find((item) => item.text.toLowerCase() === text.toLowerCase());
 
         if (!itemToUncheck) {
           return {
@@ -329,8 +309,7 @@ export const executeTodo = async (
         return {
           message: `Unknown action: ${action}`,
           data: { items },
-          instructions:
-            "Tell the user that the action was not recognized. Valid actions are: show, add, delete, clear_completed, update, check, uncheck.",
+          instructions: "Tell the user that the action was not recognized. Valid actions are: show, add, delete, clear_completed, update, check, uncheck.",
           updating: true,
         };
     }
@@ -339,8 +318,7 @@ export const executeTodo = async (
     return {
       message: `Todo list error: ${error instanceof Error ? error.message : "Unknown error"}`,
       data: { items: [] },
-      instructions:
-        "Acknowledge that there was an error managing the todo list.",
+      instructions: "Acknowledge that there was an error managing the todo list.",
     };
   }
 };

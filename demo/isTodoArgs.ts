@@ -13,15 +13,9 @@ const TODO_ACTIONS: Record<TodoAction, true> = {
   uncheck: true,
 };
 
-const isTodoAction = (value: unknown): value is TodoAction =>
-  typeof value === "string" && Object.keys(TODO_ACTIONS).includes(value);
+const isTodoAction = (value: unknown): value is TodoAction => typeof value === "string" && Object.keys(TODO_ACTIONS).includes(value);
 
-const isOptionalString = (value: unknown): boolean =>
-  value === undefined || typeof value === "string";
+const isOptionalString = (value: unknown): boolean => value === undefined || typeof value === "string";
 
-export const isTodoArgs = (
-  args: Record<string, unknown>,
-): args is Record<string, unknown> & TodoArgs =>
-  isTodoAction(args["action"]) &&
-  isOptionalString(args["text"]) &&
-  isOptionalString(args["newText"]);
+export const isTodoArgs = (args: Record<string, unknown>): args is Record<string, unknown> & TodoArgs =>
+  isTodoAction(args["action"]) && isOptionalString(args["text"]) && isOptionalString(args["newText"]);

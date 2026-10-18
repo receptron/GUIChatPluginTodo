@@ -20,13 +20,7 @@ export const plugin: ToolPlugin<TodoToolData, unknown, TodoArgs> = {
 
 export type { TodoToolData, TodoArgs, TodoItem } from "../core/types";
 
-export {
-  TOOL_NAME,
-  TOOL_DEFINITION,
-  SYSTEM_PROMPT,
-  executeTodo,
-  pluginCore,
-} from "../core/plugin";
+export { TOOL_NAME, TOOL_DEFINITION, SYSTEM_PROMPT, executeTodo, pluginCore } from "../core/plugin";
 
 export { samples } from "../core/samples";
 

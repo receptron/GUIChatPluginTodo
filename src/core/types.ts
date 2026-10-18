@@ -14,14 +14,7 @@ export interface TodoToolData {
 }
 
 export interface TodoArgs {
-  action:
-    | "show"
-    | "add"
-    | "delete"
-    | "clear_completed"
-    | "update"
-    | "check"
-    | "uncheck";
+  action: "show" | "add" | "delete" | "clear_completed" | "update" | "check" | "uncheck";
   text?: string;
   newText?: string;
 }

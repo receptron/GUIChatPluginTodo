@@ -9,22 +9,13 @@ export const TOOL_NAME = "manageTodoList";
 export const TOOL_DEFINITION: ToolDefinition = {
   type: "function",
   name: TOOL_NAME,
-  description:
-    "Manage a todo list - show current items, add new items, or delete items. Use this to help users track tasks and remember things.",
+  description: "Manage a todo list - show current items, add new items, or delete items. Use this to help users track tasks and remember things.",
   parameters: {
     type: "object",
     properties: {
       action: {
         type: "string",
-        enum: [
-          "show",
-          "add",
-          "delete",
-          "clear_completed",
-          "update",
-          "check",
-          "uncheck",
-        ],
+        enum: ["show", "add", "delete", "clear_completed", "update", "check", "uncheck"],
         description:
           "Action to perform: 'show' displays the list, 'add' creates a new item, 'delete' removes an item, 'clear_completed' removes all checked items, 'update' modifies an existing item, 'check' marks an item as completed, 'uncheck' marks an item as not completed",
       },
@@ -35,8 +26,7 @@ export const TOOL_DEFINITION: ToolDefinition = {
       },
       newText: {
         type: "string",
-        description:
-          "For 'update' action only: the new text to replace the existing item text",
+        description: "For 'update' action only: the new text to replace the existing item text",
       },
     },
     required: ["action"],

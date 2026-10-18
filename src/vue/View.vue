@@ -10,17 +10,11 @@
 
       <div v-if="items.length === 0" class="text-center py-12">
         <div class="text-gray-400 text-lg">No todo items yet</div>
-        <div class="text-gray-500 text-sm mt-2">
-          Ask the assistant to add some tasks!
-        </div>
+        <div class="text-gray-500 text-sm mt-2">Ask the assistant to add some tasks!</div>
       </div>
 
       <div v-else class="space-y-2">
-        <div
-          v-for="item in items"
-          :key="item.id"
-          class="group flex items-start gap-3 p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-        >
+        <div v-for="item in items" :key="item.id" class="group flex items-start gap-3 p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
           <input
             type="checkbox"
             :checked="item.completed"
@@ -28,12 +22,7 @@
             class="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
           />
           <div class="flex-1 min-w-0">
-            <p
-              :class="[
-                'break-words',
-                item.completed ? 'line-through text-gray-500' : 'text-gray-800',
-              ]"
-            >
+            <p :class="['break-words', item.completed ? 'line-through text-gray-500' : 'text-gray-800']">
               {{ item.text }}
             </p>
             <p class="text-xs text-gray-500 mt-1">
@@ -45,12 +34,7 @@
             class="opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-700 transition-opacity p-1"
             title="Delete item"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path
                 fill-rule="evenodd"
                 d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
@@ -61,16 +45,8 @@
         </div>
       </div>
 
-      <div
-        v-if="completedCount > 0"
-        class="mt-6 pt-4 border-t border-gray-200"
-      >
-        <button
-          @click="clearCompleted"
-          class="text-sm text-gray-600 hover:text-red-600 transition-colors"
-        >
-          Clear completed items
-        </button>
+      <div v-if="completedCount > 0" class="mt-6 pt-4 border-t border-gray-200">
+        <button @click="clearCompleted" class="text-sm text-gray-600 hover:text-red-600 transition-colors">Clear completed items</button>
       </div>
     </div>
   </div>
@@ -100,9 +76,7 @@ watch(
 );
 
 const totalCount = computed(() => items.value.length);
-const completedCount = computed(
-  () => items.value.filter((item) => item.completed).length,
-);
+const completedCount = computed(() => items.value.filter((item) => item.completed).length);
 
 function saveTodos(todoItems: TodoItem[]): void {
   try {
@@ -140,8 +114,7 @@ function formatDate(timestamp: number): string {
 
   if (diffMins < 1) return "just now";
   if (diffMins < 60) return `${diffMins} min${diffMins !== 1 ? "s" : ""} ago`;
-  if (diffHours < 24)
-    return `${diffHours} hour${diffHours !== 1 ? "s" : ""} ago`;
+  if (diffHours < 24) return `${diffHours} hour${diffHours !== 1 ? "s" : ""} ago`;
   if (diffDays < 7) return `${diffDays} day${diffDays !== 1 ? "s" : ""} ago`;
 
   return date.toLocaleDateString();
