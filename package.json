@@ -1,6 +1,6 @@
 {
   "name": "@gui-chat-plugin/todo",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Todo list plugin for GUIChat",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -40,7 +40,7 @@
     "format:check": "prettier --check \"{src,demo}/**/*.{ts,tsx,vue,json,css}\" \"*.{ts,js,json}\""
   },
   "peerDependencies": {
-    "gui-chat-protocol": "^2.1.0",
+    "gui-chat-protocol": "^2.3.0",
     "vue": "^3.5.0"
   },
   "devDependencies": {
